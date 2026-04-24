@@ -15,7 +15,11 @@ export default function ContactDrawer({ onClose }: ContactDrawerProps) {
 
     useEffect(() => {
         requestAnimationFrame(() => setVisible(true))
-        firstInputRef.current?.focus()
+        // Delay focus to prevent iOS zoom, and only focus on desktop
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+        if (!isMobile) {
+            setTimeout(() => firstInputRef.current?.focus(), 500)
+        }
     }, [])
 
     useEffect(() => {

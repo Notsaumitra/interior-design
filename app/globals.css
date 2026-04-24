@@ -8,6 +8,29 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Prevent iOS zoom on input focus */
+@media screen and (max-width: 768px) {
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        font-size: 16px !important;
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-appearance: none;
+        font-size: 16px !important;
+    }
+}
+
 body {
     @apply bg-neutral-950 text-neutral-100 font-sans;
 }
