@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function About() {
     return (
         <section id="about" className="py-20 bg-gradient-to-b from-neutral-800 to-neutral-900 relative overflow-hidden">
@@ -7,15 +9,15 @@ export default function About() {
             <div className="container relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     {/* Image */}
-                    <div className="rounded-2xl overflow-hidden h-96 md:order-2 group relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent-primary via-accent-warm to-accent-secondary rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-                        <div className="relative w-full h-full bg-gradient-to-br from-neutral-600 to-neutral-900 flex items-center justify-center border-2 border-neutral-700 group-hover:border-accent-primary/60 transition-all duration-300 overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div className="text-center text-neutral-400 relative z-10">
-                                <p className="text-lg font-semibold mb-2">About Section Image</p>
-                                <p className="text-sm">Add a personal photo here</p>
-                            </div>
-                        </div>
+                    <div className="rounded-2xl overflow-hidden h-96 md:order-2 group relative border-2 border-neutral-700 group-hover:border-accent-primary/60 transition-all duration-300">
+                        <div className="absolute inset-0 bg-gradient-to-br from-accent-primary via-accent-warm to-accent-secondary rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10 pointer-events-none"></div>
+                        <Image
+                            src="/images/about/me.png"
+                            alt="About — personal portrait"
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            priority
+                        />
                     </div>
 
                     {/* Content */}

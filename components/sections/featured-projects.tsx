@@ -4,28 +4,28 @@ import ProjectCard from '@/components/projects/project-card'
 
 const projects = [
     {
-        id: 3,
+        id: 1,
         title: 'Blush Tone Beauty Studio',
         category: 'Commercial',
         description: 'Soft pink salon interior with refined finishes and modern elegance',
         image: '/images/projects/salon/salon.webp',
     },
     {
-        id: 4,
+        id: 2,
         title: 'Premium Dental Lounge',
         category: 'Healthcare',
         description: 'Modern dental clinic with warm lighting and sophisticated materials',
         image: '/images/projects/dental/dental_clinic.webp',
     },
     {
-        id: 1,
+        id: 3,
         title: 'Contemporary Living Space',
         category: 'Residential',
         description: 'Warm minimal living room with layered lighting and natural textures',
         image: '/images/projects/living-room/living_room.webp',
     },
     {
-        id: 2,
+        id: 4,
         title: 'Boutique Master Bedroom',
         category: 'Residential',
         description: 'Elegant bedroom blending soft tones, textures, and ambient lighting',
