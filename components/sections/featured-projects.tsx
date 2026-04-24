@@ -4,39 +4,42 @@ import ProjectCard from '@/components/projects/project-card'
 
 const projects = [
     {
-        id: 1,
-        title: 'Modern Living Room',
-        category: 'Living Room',
-        description: 'Minimalist design with warm tones',
-        image: 'https://via.placeholder.com/400x300?text=Living+Room',
-    },
-    {
-        id: 2,
-        title: 'Contemporary Kitchen',
-        category: 'Kitchen',
-        description: 'Sleek and functional design',
-        image: 'https://via.placeholder.com/400x300?text=Kitchen',
-    },
-    {
         id: 3,
-        title: 'Cozy Bedroom',
-        category: 'Bedroom',
-        description: 'Serene and comfortable space',
-        image: 'https://via.placeholder.com/400x300?text=Bedroom',
+        title: 'Blush Tone Beauty Studio',
+        category: 'Commercial',
+        description: 'Soft pink salon interior with refined finishes and modern elegance',
+        image: '/images/projects/salon/salon.webp',
     },
     {
         id: 4,
-        title: 'Elegant Bathroom',
-        category: 'Bathroom',
-        description: 'Luxury meets simplicity',
-        image: 'https://via.placeholder.com/400x300?text=Bathroom',
+        title: 'Premium Dental Lounge',
+        category: 'Healthcare',
+        description: 'Modern dental clinic with warm lighting and sophisticated materials',
+        image: '/images/projects/dental/dental_clinic.webp',
+    },
+    {
+        id: 1,
+        title: 'Contemporary Living Space',
+        category: 'Residential',
+        description: 'Warm minimal living room with layered lighting and natural textures',
+        image: '/images/projects/living-room/living_room.webp',
+    },
+    {
+        id: 2,
+        title: 'Boutique Master Bedroom',
+        category: 'Residential',
+        description: 'Elegant bedroom blending soft tones, textures, and ambient lighting',
+        image: '/images/projects/bedroom/bedroom.webp',
     },
 ]
 
 export default function FeaturedProjects() {
     return (
-        <section id="projects" className="py-20 bg-neutral-900">
-            <div className="container">
+        <section id="projects" className="py-20 bg-gradient-to-b from-neutral-900 to-neutral-950 relative overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-accent-primary/5 to-transparent rounded-full blur-3xl"></div>
+
+            <div className="container relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-12 space-y-3">
                     <p className="text-accent-warm font-semibold text-sm uppercase tracking-wide">

@@ -5,8 +5,11 @@ export default function Footer() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="bg-neutral-950 text-neutral-100 mt-20 border-t border-neutral-800">
-            <div className="container py-12">
+        <footer className="bg-gradient-to-t from-neutral-950 via-neutral-900 to-neutral-800 text-neutral-100 mt-20 border-t border-accent-primary/20 relative overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-accent-primary/5 to-transparent rounded-full blur-3xl"></div>
+
+            <div className="container py-12 relative z-10">
                 {/* Footer Content */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     {/* Brand */}
@@ -39,21 +42,21 @@ export default function Footer() {
                         <div className="flex gap-4">
                             <a
                                 href="mailto:contact@example.com"
-                                className="text-neutral-400 hover:text-accent-primary transition"
+                                className="text-neutral-400 hover:text-accent-warm hover:drop-shadow-lg transition duration-300"
                                 aria-label="Email"
                             >
                                 <Mail size={20} />
                             </a>
                             <a
                                 href="#"
-                                className="text-neutral-400 hover:text-accent-primary transition"
+                                className="text-neutral-400 hover:text-accent-warm hover:drop-shadow-lg transition duration-300"
                                 aria-label="LinkedIn"
                             >
                                 <Linkedin size={20} />
                             </a>
                             <a
                                 href="#"
-                                className="text-neutral-400 hover:text-accent-primary transition"
+                                className="text-neutral-400 hover:text-accent-warm hover:drop-shadow-lg transition duration-300"
                                 aria-label="Instagram"
                             >
                                 <Instagram size={20} />
@@ -63,7 +66,7 @@ export default function Footer() {
                 </div>
 
                 {/* Divider */}
-                <div className="border-t border-neutral-800 pt-8">
+                <div className="border-t border-accent-primary/20 pt-8">
                     <p className="text-center text-neutral-500 text-sm">
                         © {currentYear} Interior Design. All rights reserved.
                     </p>

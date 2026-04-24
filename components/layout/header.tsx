@@ -17,11 +17,11 @@ export default function Header() {
     ]
 
     return (
-        <header className="sticky top-0 z-50 bg-neutral-950 border-b border-neutral-800">
+        <header className="sticky top-0 z-50 bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-800 border-b border-accent-primary/20 backdrop-blur-sm bg-opacity-95">
             <div className="container flex items-center justify-between h-16">
                 {/* Logo */}
                 <Link href="/" className="text-xl font-bold text-accent-primary">
-                    Interior Design
+                    Saloni's Studio
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -47,13 +47,13 @@ export default function Header() {
 
                 {/* Mobile Navigation */}
                 {isOpen && (
-                    <nav className="absolute top-16 left-0 right-0 bg-neutral-950 border-b border-neutral-800 md:hidden">
+                    <nav className="absolute top-16 left-0 right-0 bg-gradient-to-b from-neutral-950 to-neutral-900 border-b border-accent-primary/20 md:hidden">
                         <div className="flex flex-col p-4 gap-4">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="text-neutral-400 hover:text-accent-primary transition-colors font-medium py-2"
+                                    className="text-neutral-400 hover:text-accent-warm transition-colors font-medium py-2"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.label}

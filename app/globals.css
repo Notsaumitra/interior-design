@@ -18,10 +18,24 @@ body {
     }
 
     .btn-primary {
-        @apply px-6 py-3 bg-accent-primary text-neutral-950 rounded-lg font-medium hover:bg-accent-warm transition-colors;
+        @apply px-6 py-3 bg-gradient-to-r from-accent-primary to-accent-warm text-neutral-950 rounded-lg font-medium shadow-lg shadow-accent-primary/30 hover:shadow-xl hover:shadow-accent-warm/40 transition-all duration-300 hover:scale-105 relative overflow-hidden;
+    }
+
+    .btn-primary::before {
+        @apply absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-lg;
+        content: '';
     }
 
     .btn-secondary {
-        @apply px-6 py-3 bg-neutral-800 text-accent-primary rounded-lg font-medium hover:bg-neutral-700 transition-colors border border-neutral-700;
+        @apply px-6 py-3 bg-neutral-900 text-accent-primary rounded-lg font-medium border-2 border-accent-primary hover:bg-gradient-to-r hover:from-accent-primary/10 hover:to-transparent transition-all duration-300 hover:border-accent-warm hover:text-accent-warm hover:shadow-lg hover:shadow-accent-primary/20;
+    }
+
+    .gradient-overlay {
+        @apply relative overflow-hidden;
+    }
+
+    .gradient-overlay::before {
+        @apply absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20 pointer-events-none;
+        content: '';
     }
 }

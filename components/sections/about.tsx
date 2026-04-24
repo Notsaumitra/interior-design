@@ -1,13 +1,20 @@
 export default function About() {
     return (
-        <section id="about" className="py-20 bg-neutral-800">
-            <div className="container">
+        <section id="about" className="py-20 bg-gradient-to-b from-neutral-800 to-neutral-900 relative overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-accent-warm/5 to-transparent rounded-full blur-3xl"></div>
+
+            <div className="container relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     {/* Image */}
-                    <div className="rounded-2xl overflow-hidden h-96 bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center md:order-2 border border-accent-primary/20">
-                        <div className="text-center text-neutral-400">
-                            <p className="text-lg font-semibold mb-2">About Section Image</p>
-                            <p className="text-sm">Add a personal photo here</p>
+                    <div className="rounded-2xl overflow-hidden h-96 md:order-2 group relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-accent-primary via-accent-warm to-accent-secondary rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                        <div className="relative w-full h-full bg-gradient-to-br from-neutral-600 to-neutral-900 flex items-center justify-center border-2 border-neutral-700 group-hover:border-accent-primary/60 transition-all duration-300 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div className="text-center text-neutral-400 relative z-10">
+                                <p className="text-lg font-semibold mb-2">About Section Image</p>
+                                <p className="text-sm">Add a personal photo here</p>
+                            </div>
                         </div>
                     </div>
 
@@ -15,7 +22,7 @@ export default function About() {
                     <div className="space-y-6 md:order-1">
                         <div className="space-y-3">
                             <p className="text-accent-warm font-semibold text-sm uppercase tracking-wide">
-                                About Us
+                                About Me
                             </p>
                             <h2 className="text-3xl md:text-4xl font-bold text-neutral-50">
                                 Passionate About Creating Beautiful Spaces
@@ -39,7 +46,7 @@ export default function About() {
                                 'Professional project management',
                             ].map((feature, index) => (
                                 <li key={index} className="flex items-start gap-3">
-                                    <span className="w-2 h-2 bg-accent-primary rounded-full mt-2 flex-shrink-0"></span>
+                                    <span className="w-2 h-2 bg-gradient-to-r from-accent-primary to-accent-warm rounded-full mt-2 flex-shrink-0"></span>
                                     <span className="text-neutral-300">{feature}</span>
                                 </li>
                             ))}
