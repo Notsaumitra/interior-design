@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    @apply bg-neutral-950 text-neutral-100 font-sans;
+}
+
+@layer components {
+    .container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    .btn-primary {
+        @apply px-6 py-3 bg-accent-primary text-neutral-950 rounded-lg font-medium hover:bg-accent-warm transition-colors;
+    }
+
+    .btn-secondary {
+        @apply px-6 py-3 bg-neutral-800 text-accent-primary rounded-lg font-medium hover:bg-neutral-700 transition-colors border border-neutral-700;
+    }
+}
