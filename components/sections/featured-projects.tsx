@@ -1,8 +1,18 @@
 'use client'
 
+import { useState } from 'react'
 import ProjectCard from '@/components/projects/project-card'
+import ProjectModal from '@/components/projects/project-modal'
 
-const projects = [
+interface Project {
+    id: number
+    title: string
+    category: string
+    description: string
+    image: string
+}
+
+const projects: Project[] = [
     {
         id: 1,
         title: 'Blush Tone Beauty Studio',
@@ -34,6 +44,16 @@ const projects = [
 ]
 
 export default function FeaturedProjects() {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+    const openModal = (project: Project) => {
+        const idx = projects.findIndex((p) => p.id === project.id)
+        setActiveIndex(idx)
+    }
+    const closeModal = () => setActiveIndex(null)
+    const goPrev = () => setActiveIndex((i) => (i !== null && i > 0 ? i - 1 : i))
+    const goNext = () => setActiveIndex((i) => (i !== null && i < projects.length - 1 ? i + 1 : i))
+
     return (
         <section id="projects" className="py-20 bg-gradient-to-b from-neutral-900 to-neutral-950 relative overflow-hidden">
             {/* Decorative elements */}
@@ -56,10 +76,27 @@ export default function FeaturedProjects() {
                 {/* Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {projects.map((project) => (
-                        <ProjectCard key={project.id} project={project} />
+                        <ProjectCard
+                            key={project.id}
+                            project={project}
+                            onOpen={openModal}
+                        />
                     ))}
                 </div>
             </div>
+
+            {/* Lightbox Modal */}
+            {activeIndex !== null && (
+                <ProjectModal
+                    project={projects[activeIndex]}
+                    onClose={closeModal}
+                    onPrev={goPrev}
+                    onNext={goNext}
+                    hasPrev={activeIndex > 0}
+                    hasNext={activeIndex < projects.length - 1}
+                />
+            )}
         </section>
     )
 }
+

@@ -1,6 +1,12 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
+import ContactDrawer from '@/components/ui/contact-drawer'
 
 export default function About() {
+    const [drawerOpen, setDrawerOpen] = useState(false)
+
     return (
         <section id="about" className="py-20 bg-gradient-to-b from-neutral-800 to-neutral-900 relative overflow-hidden">
             {/* Decorative elements */}
@@ -27,12 +33,12 @@ export default function About() {
                                 About Me
                             </p>
                             <h2 className="text-3xl md:text-4xl font-bold text-neutral-50">
-                                Passionate About Creating Beautiful Spaces
+                                Saloni Tiwari
                             </h2>
                         </div>
 
                         <p className="text-neutral-300 leading-relaxed">
-                            With years of experience in interior design, I believe that every space has the potential to be transformed into something extraordinary. My approach combines functionality with aesthetic excellence, always keeping the client's vision and lifestyle in mind.
+                            I'm an interior designer passionate about creating spaces that feel like home.
                         </p>
 
                         <p className="text-neutral-300 leading-relaxed">
@@ -55,9 +61,17 @@ export default function About() {
                         </ul>
 
                         {/* CTA */}
-                        <button className="btn-primary mt-6">
+                        <button
+                            className="btn-primary mt-6"
+                            onClick={() => setDrawerOpen(true)}
+                        >
                             Get in Touch
                         </button>
+
+                        {/* Contact Drawer */}
+                        {drawerOpen && (
+                            <ContactDrawer onClose={() => setDrawerOpen(false)} />
+                        )}
                     </div>
                 </div>
             </div>

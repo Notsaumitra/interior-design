@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
+import Confetti from '@/components/ui/confetti'
 
 export const metadata: Metadata = {
     title: 'Interior Design Showcase',
@@ -17,6 +18,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
+                <Confetti />
                 <Header />
                 <main>{children}</main>
                 <Footer />

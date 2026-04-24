@@ -1,19 +1,21 @@
-import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 
-interface ProjectCardProps {
-    project: {
-        id: number
-        title: string
-        category: string
-        description: string
-        image: string
-    }
+interface Project {
+    id: number
+    title: string
+    category: string
+    description: string
+    image: string
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+interface ProjectCardProps {
+    project: Project
+    onOpen: (project: Project) => void
+}
+
+export default function ProjectCard({ project, onOpen }: ProjectCardProps) {
     return (
-        <div className="group cursor-pointer">
+        <div className="group cursor-pointer" onClick={() => onOpen(project)}>
             {/* Image Container */}
             <div className="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-neutral-800 to-neutral-950 border border-neutral-700 group-hover:border-accent-primary/50 transition-colors duration-300">
                 <img
@@ -40,10 +42,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </div>
 
             {/* Link */}
-            <div className="flex items-center gap-2 mt-3 text-accent-primary text-sm font-semibold group-hover:gap-3 group-hover:text-accent-warm transition-all duration-300">
+            <button
+                onClick={(e) => { e.stopPropagation(); onOpen(project) }}
+                className="flex items-center gap-2 mt-3 text-accent-primary text-sm font-semibold group-hover:gap-3 group-hover:text-accent-warm transition-all duration-300"
+            >
                 View Project
                 <ArrowRight size={16} />
-            </div>
+            </button>
         </div>
     )
 }
