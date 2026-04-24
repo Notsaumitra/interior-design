@@ -47,7 +47,7 @@ export default function ProjectModal({
     return (
         /* Backdrop */
         <div
-            className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-8"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8"
             style={{ background: 'rgba(0,0,0,0.92)', backdropFilter: 'blur(8px)' }}
             onClick={onClose}
         >

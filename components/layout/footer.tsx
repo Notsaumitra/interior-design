@@ -14,7 +14,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     {/* Brand */}
                     <div>
-                        <h3 className="text-lg font-bold mb-2 text-accent-primary">Interior Design</h3>
+                        <h3 className="text-lg font-bold mb-2 text-accent-primary">Saloni's Studio</h3>
                         <p className="text-neutral-400 text-sm">
                             Creating beautiful and functional spaces that inspire.
                         </p>
@@ -68,7 +68,7 @@ export default function Footer() {
                 {/* Divider */}
                 <div className="border-t border-accent-primary/20 pt-8">
                     <p className="text-center text-neutral-500 text-sm">
-                        © {currentYear} Interior Design. All rights reserved.
+                        © {currentYear} Saloni's Studio. All rights reserved.
                     </p>
                 </div>
             </div>

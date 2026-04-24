@@ -3,35 +3,44 @@
 import { useEffect, useRef, useState } from 'react'
 
 const COLORS = [
-    '#F9A8D4', '#FCA5A5', '#FCD34D', '#6EE7B7',
-    '#93C5FD', '#C4B5FD', '#FB923C', '#F472B6',
-    '#34D399', '#FBBF24', '#A78BFA',
+    '#d4a574', '#e8b76d', // Theme gold colors
+    '#F9A8D4', '#FCA5A5', '#FCD34D', '#6EE7B7', // Pastel brights
+    '#93C5FD', '#C4B5FD', '#FB923C', '#FBBF24',
 ]
 
 interface Particle {
     x: number
     y: number
+    vx: number
+    vy: number
     color: string
     size: number
-    speedX: number
-    speedY: number
-    rotation: number
-    rotationSpeed: number
     shape: 'rect' | 'circle'
+    tilt: number
+    tiltAngle: number
+    tiltAngleInc: number
 }
 
-function makeParticles(count: number, width: number): Particle[] {
-    return Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: -10 - Math.random() * 40,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        size: 6 + Math.random() * 8,
-        speedX: (Math.random() - 0.5) * 2,
-        speedY: 3 + Math.random() * 4,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 8,
-        shape: Math.random() > 0.4 ? 'rect' : 'circle',
-    }))
+function makeCannonParticles(count: number, x: number, y: number, isLeft: boolean): Particle[] {
+    return Array.from({ length: count }, () => {
+        // Left cannon shoots right-up, Right cannon shoots left-up
+        const angle = isLeft ? (Math.random() * 45 + 45) : (Math.random() * 45 + 90)
+        const rad = (angle * Math.PI) / 180
+        const velocity = 15 + Math.random() * 15 // powerful blast
+
+        return {
+            x,
+            y,
+            vx: Math.cos(rad) * velocity,
+            vy: -Math.sin(rad) * velocity, // Negative because Y goes down
+            color: COLORS[Math.floor(Math.random() * COLORS.length)],
+            size: 8 + Math.random() * 10,
+            shape: Math.random() > 0.5 ? 'rect' : 'circle',
+            tilt: Math.floor(Math.random() * 10) - 10,
+            tiltAngle: 0,
+            tiltAngleInc: (Math.random() * 0.07) + 0.05,
+        }
+    })
 }
 
 export default function Confetti() {
@@ -52,46 +61,64 @@ export default function Confetti() {
         resize()
         window.addEventListener('resize', resize)
 
-        let particles = makeParticles(150, canvas.width)
+        // Fire from both bottom corners
+        let particles = [
+            ...makeCannonParticles(120, 0, canvas.height, true),
+            ...makeCannonParticles(120, canvas.width, canvas.height, false)
+        ]
+
         const start = performance.now()
-        const duration = 2200 // ms
+        const duration = 5000 // Doubled time to ~5 seconds
+        const gravity = 0.35 // Pulls them down
+        const friction = 0.99 // Slows down horizontal movement slightly
 
         const draw = (now: number) => {
             const elapsed = now - start
             const progress = Math.min(elapsed / duration, 1)
-            // fade out in last 400ms
-            const alpha = progress > 0.82 ? 1 - (progress - 0.82) / 0.18 : 1
+            
+            // Fade out beautifully in the last 1 second
+            const alpha = progress > 0.8 ? 1 - (progress - 0.8) / 0.2 : 1
 
             ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-            particles = particles.map(p => ({
-                ...p,
-                x: p.x + p.speedX,
-                y: p.y + p.speedY,
-                rotation: p.rotation + p.rotationSpeed,
-                // drift back to top once fallen off screen
-                ...(p.y > canvas.height + 10 && progress < 0.7
-                    ? { x: Math.random() * canvas.width, y: -10 }
-                    : {}),
-            }))
-
             ctx.globalAlpha = alpha
+
             particles.forEach(p => {
+                // Physics
+                p.vy += gravity
+                p.vx *= friction
+                p.x += p.vx
+                p.y += p.vy
+
+                // Tumbling / 3D effect
+                p.tiltAngle += p.tiltAngleInc
+                
+                // Add some natural side-to-side drift as they fall
+                const drift = Math.sin(p.tiltAngle - p.tilt) * 1.5
+                p.x += drift
+
                 ctx.save()
                 ctx.translate(p.x, p.y)
-                ctx.rotate((p.rotation * Math.PI) / 180)
+                ctx.rotate(p.tiltAngle)
+                
+                // Scale Y to simulate 3D flipping
+                const scaleY = Math.abs(Math.cos(p.tiltAngle))
+                ctx.scale(1, scaleY)
+
                 ctx.fillStyle = p.color
                 if (p.shape === 'circle') {
                     ctx.beginPath()
                     ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2)
                     ctx.fill()
                 } else {
-                    ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2)
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size)
                 }
                 ctx.restore()
             })
 
-            if (elapsed < duration) {
+            // Filter out particles that are way off screen to save performance
+            particles = particles.filter(p => p.y < canvas.height + 100)
+
+            if (elapsed < duration && particles.length > 0) {
                 frameRef.current = requestAnimationFrame(draw)
             } else {
                 setVisible(false)

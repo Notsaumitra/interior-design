@@ -15,15 +15,22 @@ export default function About() {
             <div className="container relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     {/* Image */}
-                    <div className="rounded-2xl overflow-hidden h-96 md:order-2 group relative border-2 border-neutral-700 group-hover:border-accent-primary/60 transition-all duration-300">
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent-primary via-accent-warm to-accent-secondary rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10 pointer-events-none"></div>
-                        <Image
-                            src="/images/about/me.png"
-                            alt="About — personal portrait"
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                            priority
-                        />
+                    <div className="relative h-96 md:h-[500px] md:order-2 group">
+                        {/* Glow behind the image */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-accent-primary via-accent-warm to-accent-secondary rounded-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-xl"></div>
+                        
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-neutral-700 group-hover:border-accent-primary/50 transition-all duration-300">
+                            <Image
+                                src="/images/about/me.png"
+                                alt="About — personal portrait"
+                                fill
+                                className="object-cover object-[center_top] group-hover:scale-105 transition-transform duration-700"
+                                priority
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                            {/* Subtle overlay on hover */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none"></div>
+                        </div>
                     </div>
 
                     {/* Content */}
@@ -68,13 +75,14 @@ export default function About() {
                             Get in Touch
                         </button>
 
-                        {/* Contact Drawer */}
-                        {drawerOpen && (
-                            <ContactDrawer onClose={() => setDrawerOpen(false)} />
-                        )}
                     </div>
                 </div>
             </div>
+
+            {/* Contact Drawer - rendered outside the relative z-10 container to escape stacking context */}
+            {drawerOpen && (
+                <ContactDrawer onClose={() => setDrawerOpen(false)} />
+            )}
         </section>
     )
 }

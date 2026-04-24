@@ -17,16 +17,17 @@ export default function ProjectCard({ project, onOpen }: ProjectCardProps) {
     return (
         <div className="group cursor-pointer" onClick={() => onOpen(project)}>
             {/* Image Container */}
-            <div className="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-neutral-800 to-neutral-950 border border-neutral-700 group-hover:border-accent-primary/50 transition-colors duration-300">
-                <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent group-hover:from-black/60 transition-colors duration-300"></div>
-                {/* Shine effect on hover */}
-                <div className="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-white/10 to-transparent"></div>
+            <div className="relative mb-4">
+                {/* Glow behind the image */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent-primary via-accent-warm to-accent-secondary rounded-lg opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-xl"></div>
+                
+                <div className="relative overflow-hidden rounded-lg h-48 bg-gradient-to-br from-neutral-800 to-neutral-950 border-2 border-neutral-700 group-hover:border-accent-primary/50 transition-all duration-300">
+                    <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
             </div>
 

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 
 export default function Hero() {
@@ -49,16 +50,21 @@ export default function Hero() {
                         </div>
                     </div>
 
-                    {/* Image Placeholder */}
+                    {/* Hero Image */}
                     <div className="hidden md:flex items-center justify-center">
                         <div className="relative w-full aspect-square group">
-                            <div className="absolute inset-0 bg-gradient-to-br from-accent-primary via-accent-warm to-accent-secondary rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-                            <div className="relative w-full h-full bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-2xl flex items-center justify-center border-2 border-transparent bg-clip-padding group-hover:border-accent-primary/50 transition-all duration-300 overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div className="text-center text-neutral-400 relative z-10">
-                                    <p className="text-lg font-semibold mb-2">Hero Image</p>
-                                    <p className="text-sm opacity-80">Add your interior design image here</p>
-                                </div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-accent-primary via-accent-warm to-accent-secondary rounded-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-xl"></div>
+                            <div className="relative w-full h-full rounded-2xl border-2 border-neutral-700 group-hover:border-accent-primary/50 transition-all duration-300 overflow-hidden">
+                                <Image
+                                    src="/images/og/hero_living_room.webp"
+                                    alt="Elegant interior design showcase"
+                                    fill
+                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                    priority
+                                    sizes="(max-width: 768px) 0vw, 50vw"
+                                />
+                                {/* Subtle overlay on hover */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
                         </div>
                     </div>

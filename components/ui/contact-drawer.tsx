@@ -157,9 +157,10 @@ export default function ContactDrawer({ onClose }: ContactDrawerProps) {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-3 w-full rounded-xl px-4 py-3.5 font-semibold text-sm transition-all duration-200 hover:brightness-110 hover:scale-[1.02] active:scale-100"
                                 style={{
-                                    background: 'linear-gradient(135deg, #25d366 0%, #128c7e 100%)',
-                                    boxShadow: '0 4px 20px rgba(37,211,102,0.2)',
-                                    color: '#fff',
+                                    background: 'rgba(212, 165, 116, 0.1)',
+                                    border: '1px solid #d4a574',
+                                    boxShadow: '0 4px 20px rgba(212, 165, 116, 0.15)',
+                                    color: '#d4a574',
                                 }}
                             >
                                 <MessageCircle size={20} />
@@ -284,7 +285,7 @@ export default function ContactDrawer({ onClose }: ContactDrawerProps) {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-sm font-semibold transition mt-2"
-                                style={{ color: '#25d366' }}
+                                style={{ color: '#d4a574' }}
                             >
                                 <MessageCircle size={16} />
                                 Or follow up on WhatsApp
